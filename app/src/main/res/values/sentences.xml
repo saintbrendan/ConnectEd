@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sentence1">
+        <item>Do</item>
+        <item>you</item>
+        <item>like</item>
+        <item>to</item>
+        <item>run</item>
+        <item>\?</item>
+    </string-array>
+    <string-array name="sentence2">
+        <item>I</item>
+        <item>don\'t</item>
+        <item>like</item>
+        <item>to</item>
+        <item>argue</item>
+    </string-array>
+    <string-array name="sentence3">
+        <item>I</item>
+        <item>like</item>
+        <item>to</item>
+        <item>eat</item>
+    </string-array>
+    <string-array name="sentence4">
+        <item>He</item>
+        <item>likes</item>
+        <item>soup</item>
+    </string-array>
+</resources>
