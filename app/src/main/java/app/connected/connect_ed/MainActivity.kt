@@ -21,5 +21,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, WordOrderActivity::class.java)
             startActivity(intent)
         }
+        ///TODO:  Sentence completion.  E.g. "Do you like to ____?"
+        /// This button appears *only* after the student finishes flashcards
     }
 }

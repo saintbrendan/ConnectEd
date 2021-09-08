@@ -74,7 +74,7 @@ class WordOrderActivity : AppCompatActivity() {
 
             } else {
                 button.setBackgroundColor(Color.RED)
-                button.text = "Confirm"
+                button.text = "Try again"
             }
         }
         val buttonHome = findViewById<Button>(R.id.buttonHome)

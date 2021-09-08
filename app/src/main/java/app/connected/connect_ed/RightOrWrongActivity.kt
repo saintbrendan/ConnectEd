@@ -23,25 +23,29 @@ class RightOrWrongActivity : AppCompatActivity() {
         val imageList =
             intent.getIntArrayExtra(EXTRA_WORDLIST)?.toMutableList() ?: mutableListOf<Int>()
         val correctImage = imageList[0]
-        val imagesFirstFour:MutableList<Int> = imageList.take(4) as MutableList<Int>
+        val imagesFirstFour: MutableList<Int> = imageList.take(4) as MutableList<Int>
         imagesFirstFour.shuffle()
 
         val iCorrect: Int = imagesFirstFour.indexOf(correctImage)
-        var text = "Which word best describes the image?"
-        text = imagesFirstFour.toString() + correctImage.toString()
-        textView.text = text
+        textView.text = "How do you say this in English?"
 
         buttons.forEachIndexed { index, button ->
             if (index == iCorrect) {
-                button.setOnClickListener{
+                button.setOnClickListener {
                     textView.text = "Correct!"
+                    val intent = Intent(this, FlashcardActivity::class.java).apply {
+                        val first = imageList.removeFirst()
+                        putExtra(EXTRA_WORDLIST, imageList.toIntArray())
+                    }
+                    startActivity(intent)
                 }
             } else {
-                button.setOnClickListener{
+                button.setOnClickListener {
                     textView.text = "Nope"
                 }
             }
-            button.text = getResources().getResourceEntryName(imagesFirstFour[index])
+            var verb = getResources().getResourceEntryName(imagesFirstFour[index])
+            button.text = "to $verb"
         }
 
 //        ButtonA.setOnClickListener {

@@ -12,6 +12,8 @@ const val EXTRA_WORDLIST = "com.example.mergeded.WORDLIST"
 
 class FlashcardActivity : AppCompatActivity() {
     var imageList = mutableListOf<Int>(
+        R.drawable.cook_big,
+        R.drawable.cook_small,
         R.drawable.rest,
 ////        R.drawable.hammock,
         R.drawable.climb,
