@@ -72,6 +72,7 @@ class FlashcardActivity : AppCompatActivity() {
 
             val intent = Intent(this, RightOrWrongActivity::class.java).apply {
                 putExtra(EXTRA_WORDLIST, imageList.toIntArray())
+                putExtra(EXTRA_SOUNDLIST, soundList.toIntArray())
             }
             startActivity(intent)
         }
