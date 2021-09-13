@@ -9,6 +9,7 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 
 const val EXTRA_WORDLIST = "com.example.mergeded.WORDLIST"
+const val EXTRA_SOUNDLIST = "com.example.mergeded.SOUNDLIST"
 
 class FlashcardActivity : AppCompatActivity() {
     var imageList = mutableListOf<Int>(
@@ -44,17 +45,22 @@ class FlashcardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flashcard)
 
-/// TODO: implement audio
-//        mediaPlayer = MediaPlayer.create(this, R.raw.to_climb)
-//        mediaPlayer?.setOnPreparedListener {
-//
-//        }
 
         val imageView = findViewById<ImageView>(R.id.imageView)
         val imageArray = intent.getIntArrayExtra(EXTRA_WORDLIST)
+        val soundArray = intent.getIntArrayExtra(EXTRA_SOUNDLIST)
         if (imageArray != null) {
             imageList = imageArray.toMutableList()
         }
+        if (soundArray != null) {
+            soundList = soundArray.toMutableList()
+        }
+
+        mediaPlayer = MediaPlayer.create(this, soundList[0])
+        mediaPlayer?.setOnPreparedListener {
+        }
+        mediaPlayer?.start()
+
         //imageView.setImageResource(imageList[0])
         val displayMetrics: DisplayMetrics = getResources().getDisplayMetrics()
         Glide.with(this).load(
@@ -62,7 +68,7 @@ class FlashcardActivity : AppCompatActivity() {
         ).override(displayMetrics.widthPixels, displayMetrics.heightPixels).into(imageView)
 
         imageView.setOnClickListener {
-            mediaPlayer?.start()
+
 
             val intent = Intent(this, RightOrWrongActivity::class.java).apply {
                 putExtra(EXTRA_WORDLIST, imageList.toIntArray())
