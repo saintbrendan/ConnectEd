@@ -7,32 +7,11 @@
     tools:context=".MainActivity">
 
 
-    <Button
-        android:id="@+id/buttonFlashcards"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Flashcards"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/buttonWordOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Word Order"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonFlashcards" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
         android:text="Which lesson would you like to start?"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -40,4 +19,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonFlashcards"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="Flashcards"
+        android:textAllCaps="false"
+        app:layout_constraintWidth_percent="0.45"
+        app:layout_constraintBottom_toTopOf="@+id/buttonWordOrder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/buttonWordOrder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="Word Order"
+        android:textAllCaps="false"
+        app:layout_constraintWidth_percent="0.45"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDoYouLikeTo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFlashcards" />
+
+    <Button
+        android:id="@+id/buttonDoYouLikeTo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="Do you like to..."
+        android:textAllCaps="false"
+        app:layout_constraintWidth_percent="0.45"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonWordOrder" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
