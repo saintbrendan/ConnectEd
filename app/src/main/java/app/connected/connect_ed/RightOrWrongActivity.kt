@@ -35,36 +35,20 @@ class RightOrWrongActivity : AppCompatActivity() {
                     textView.text = "Correct!"
                     val intent = Intent(this, FlashcardActivity::class.java).apply {
                         val first = imageList.removeFirst()
+                        /// TODO: add last or after 3 repetitions.
+                        imageList.add(first)
                         putExtra(EXTRA_WORDLIST, imageList.toIntArray())
                     }
                     startActivity(intent)
                 }
             } else {
                 button.setOnClickListener {
-                    textView.text = "Nope"
+                    textView.text = "Nope.  Try again!"
                 }
             }
             var verb = getResources().getResourceEntryName(imagesFirstFour[index])
             button.text = "to $verb"
         }
-
-//        ButtonA.setOnClickListener {
-//            val intent = Intent(this, FlashcardActivity::class.java).apply {
-//                val first = imageList.removeFirst()
-//                imageList.add(first)
-//                putExtra(EXTRA_WORDLIST, imageList.toIntArray())
-//            }
-//            startActivity(intent)
-//        }
-//
-//        buttonNo.setOnClickListener {
-//            val intent = Intent(this, FlashcardActivity::class.java).apply {
-//                val first = imageList.removeFirst()
-//                imageList.add(2, first)
-//                putExtra(EXTRA_WORDLIST, imageList.toIntArray())
-//            }
-//            startActivity(intent)
-//        }
 
         buttonHome.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)

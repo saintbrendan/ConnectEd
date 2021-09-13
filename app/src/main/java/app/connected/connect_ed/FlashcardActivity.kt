@@ -12,22 +12,31 @@ const val EXTRA_WORDLIST = "com.example.mergeded.WORDLIST"
 
 class FlashcardActivity : AppCompatActivity() {
     var imageList = mutableListOf<Int>(
-        R.drawable.cook_big,
-        R.drawable.cook_small,
         R.drawable.rest,
-////        R.drawable.hammock,
         R.drawable.climb,
         R.drawable.argue,
         R.drawable.cry,
         R.drawable.dance,
         R.drawable.dive,
         R.drawable.exercise,
-        R.drawable.sail,
+        R.drawable.windsurf,
         R.drawable.walk,
         R.drawable.write,
-        R.drawable.cook_small,
-////        R.drawable.cook_2,
-        R.drawable.cook_big,
+        R.drawable.cook,
+    )
+
+    var soundList = mutableListOf<Int>(
+        R.raw.rest,
+        R.raw.climb,
+        R.raw.argue,
+        R.raw.cry,
+        R.raw.dance,
+        R.raw.dive,
+        R.raw.exercise,
+        R.raw.windsurf,
+        R.raw.walk,
+        R.raw.write,
+        R.raw.cook,
     )
     private var mediaPlayer: MediaPlayer? = null
 
