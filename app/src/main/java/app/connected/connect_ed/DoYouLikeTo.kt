@@ -1,5 +1,6 @@
 package app.connected.connect_ed
 
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 
 
@@ -31,11 +33,12 @@ class DoYouLikeTo : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_do_you_like_to)
-        val correctAnswer = "walk"
+        var correctAnswer = "walk"
 
         val inputText = findViewById<EditText>(R.id.editTextTextPersonName);
         val imgView = findViewById<ImageView>(R.id.imageView2)
         val buttonCorrect = findViewById<Button>(R.id.buttonCorrect)
+        val buttonHome = findViewById<Button>(R.id.buttonHome2)
 
         inputText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
@@ -58,10 +61,17 @@ class DoYouLikeTo : AppCompatActivity() {
         buttonCorrect.setOnClickListener {
             buttonCorrect.visibility = View.INVISIBLE
             inputText.text.clear()
-            val d = ResourcesCompat.getDrawable(resources, R.drawable.climb, null)
+            imgIndex = (imgIndex + 1) % imageList.size
+            correctAnswer = getResources().getResourceName(imageList[imgIndex]).substringAfterLast("/")
+            inputText.setTextColor(Color.BLACK)
+            val d = ResourcesCompat.getDrawable(resources, imageList[imgIndex], null)
             imgView.setImageDrawable(d)
         }
 
+        buttonHome.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }
