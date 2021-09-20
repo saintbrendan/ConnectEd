@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ConnectEd">
         <activity
+            android:name=".ListeningActivity"
+            android:exported="true" />
+        <activity
             android:name=".DoYouLikeTo"
             android:exported="true" />
         <activity

@@ -29,5 +29,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, DoYouLikeTo::class.java)
             startActivity(intent)
         }
+
+        val buttonListening = findViewById(R.id.buttonListening) as Button
+        buttonListening.setOnClickListener {
+            val intent = Intent(this, ListeningActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
