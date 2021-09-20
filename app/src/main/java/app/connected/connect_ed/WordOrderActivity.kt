@@ -26,6 +26,7 @@ class WordOrderActivity : AppCompatActivity() {
         var iSentence = 0
 
         var sentences = mutableListOf<MutableList<String>>()
+        val button = findViewById<Button>(R.id.button2)
         for (sentence in sentenceList) {
             val wordArray4 = resources.getStringArray(sentence)
             sentences.add(mutableListOf<String>(*wordArray4))
@@ -37,7 +38,9 @@ class WordOrderActivity : AppCompatActivity() {
             shuffledSentence.shuffle()
             submitList(shuffledSentence)
         }
+        wordsAdapter.setConfirmButton(button)
         val sentenceAdapter = SentenceAdapter(wordsAdapter)
+        sentenceAdapter.setConfirmButton(button)
 
         binding.rvSentence.layoutManager =
             FlexboxLayoutManager(this, FlexDirection.ROW, FlexWrap.WRAP).apply {
@@ -53,9 +56,12 @@ class WordOrderActivity : AppCompatActivity() {
             }
 
         binding.rvWords.adapter = wordsAdapter
-
-        val button = findViewById<Button>(R.id.button2)
         button.setOnClickListener {
+            if (button.text == "Try again") {
+                button.setBackgroundColor(Color.rgb(98, 0, 238))
+                button.setTextColor(Color.WHITE)
+                button.text = "Confirm"
+            }
             if (sentenceAdapter.currentList == sentences[iSentence]) {
                 if (button.text == "Confirm") {
                     button.setBackgroundColor(Color.GREEN)

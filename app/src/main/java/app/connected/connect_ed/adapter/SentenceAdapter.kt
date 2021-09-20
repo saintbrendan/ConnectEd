@@ -1,8 +1,10 @@
 package app.connected.connect_ed.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +16,12 @@ class SentenceAdapter(wordsAdapter: WordsAdapter) :
         WordsDiffCallback()
     ) {
     private val wa: WordsAdapter = wordsAdapter
+    private var button: Button? = null // Probably a better way to do this logic
+
+    // Probably a better way to do this logic
+    fun setConfirmButton(button: Button) {
+        this.button = button
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_word, parent, false)
@@ -52,6 +60,10 @@ class SentenceAdapter(wordsAdapter: WordsAdapter) :
             findViewById<TextView>(R.id.tvWord).text = word
             setOnClickListener {
                 val item = removeItem(adapterPosition)
+                // Probably a better way to do this
+                button?.text = "Confirm"
+                button?.setBackgroundColor(Color.rgb(52, 1, 93))
+                button?.setTextColor(Color.WHITE)
                 wa.addItem(item)
             }
         }
