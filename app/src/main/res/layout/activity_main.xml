@@ -85,7 +85,7 @@
         android:id="@+id/textViewDisplayName"
         android:layout_width="96dp"
         android:layout_height="32dp"
-        android:text="TextView"
+        android:text=" "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

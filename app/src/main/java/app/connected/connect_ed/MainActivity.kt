@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val displayName = findViewById<TextView>(R.id.textViewDisplayName)
-        displayName.text = "hi Eric!"
 
         // log in
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -119,6 +118,8 @@ class MainActivity : AppCompatActivity() {
 
             val googleIdToken = account?.idToken ?: ""
             Log.i("Google ID Token", googleIdToken)
+            val displayName = findViewById<TextView>(R.id.textViewDisplayName)
+            displayName.text = googleFirstName
 
         } catch (e: ApiException) {
             // Sign in was unsuccessful
