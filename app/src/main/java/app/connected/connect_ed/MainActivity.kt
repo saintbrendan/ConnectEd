@@ -1,14 +1,18 @@
 package app.connected.connect_ed
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 
@@ -20,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val displayName = findViewById<TextView>(R.id.textViewDisplayName)
+        displayName.text = "hi Eric!"
 
         // log in
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -29,11 +35,24 @@ class MainActivity : AppCompatActivity() {
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        val google_login_btn = findViewById<Button>(R.id.google_login_btn);
+        val google_login_btn = findViewById<SignInButton>(R.id.sign_in_button);
         google_login_btn.setOnClickListener {
             signIn()
         }
-
+//        val acct = GoogleSignIn.getLastSignedInAccount(this)
+//        if (acct != null) {
+//            val personName = acct.displayName
+//            val personGivenName = acct.givenName
+//            val personFamilyName = acct.familyName
+//            val personEmail = acct.email
+//            val personId = acct.id
+//            val personPhoto: Uri? = acct.photoUrl
+//            val displayName = findViewById<TextView>(R.id.textViewDisplayName)
+//            displayName.text = "hi Bob!"
+//            this.title = personName
+//        } else {
+//            displayName.text = "damn.  acct==null"
+//        }
 
         val buttonFlashCards = findViewById(R.id.buttonFlashcards) as Button
         buttonFlashCards.setOnClickListener {
