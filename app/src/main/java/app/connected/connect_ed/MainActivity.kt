@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         // log in
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("YOUR_WEB_APPLICATION_CLIENT_ID")
             .requestEmail()
             .build()
 
@@ -39,20 +38,6 @@ class MainActivity : AppCompatActivity() {
         google_login_btn.setOnClickListener {
             signIn()
         }
-//        val acct = GoogleSignIn.getLastSignedInAccount(this)
-//        if (acct != null) {
-//            val personName = acct.displayName
-//            val personGivenName = acct.givenName
-//            val personFamilyName = acct.familyName
-//            val personEmail = acct.email
-//            val personId = acct.id
-//            val personPhoto: Uri? = acct.photoUrl
-//            val displayName = findViewById<TextView>(R.id.textViewDisplayName)
-//            displayName.text = "hi Bob!"
-//            this.title = personName
-//        } else {
-//            displayName.text = "damn.  acct==null"
-//        }
 
         val buttonFlashCards = findViewById(R.id.buttonFlashcards) as Button
         buttonFlashCards.setOnClickListener {
