@@ -13,6 +13,7 @@ const val EXTRA_SOUNDLIST = "com.example.mergeded.SOUNDLIST"
 
 class FlashcardActivity : AppCompatActivity() {
     var imageList = mutableListOf<Int>(
+        R.drawable.image_baseball,
         R.drawable.rest,
         R.drawable.climb,
         R.drawable.argue,
