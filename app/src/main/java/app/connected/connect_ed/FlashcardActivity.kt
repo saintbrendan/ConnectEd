@@ -5,6 +5,7 @@ import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 
@@ -40,18 +41,39 @@ class FlashcardActivity : AppCompatActivity() {
         R.raw.write,
         R.raw.cook,
     )
+
+
+
     private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flashcard)
 
+        fun getDrawablesList() : List<Int> {
+            val drawableClass = R.drawable::class
+            val instance = drawableClass.constructors.first().call()
+            val drawablesList = mutableListOf<Int>()
+            for (field in instance.javaClass.declaredFields) {
+                val test = field.getInt(instance)
+                val word = resources.getResourceEntryName(test)
+                if (word.startsWith("image_", ignoreCase = false)) {
+                    drawablesList.add(test)
+                    Log.d("Field Name", word)
+                }
+            }
+            return drawablesList
+        }
+        var newList = getDrawablesList()
+
+
+
 
         val imageView = findViewById<ImageView>(R.id.imageView)
         val imageArray = intent.getIntArrayExtra(EXTRA_WORDLIST)
         val soundArray = intent.getIntArrayExtra(EXTRA_SOUNDLIST)
         if (imageArray != null) {
-            imageList = imageArray.toMutableList()
+            newList = imageArray.toMutableList()
         }
         if (soundArray != null) {
             soundList = soundArray.toMutableList()
@@ -65,17 +87,18 @@ class FlashcardActivity : AppCompatActivity() {
         //imageView.setImageResource(imageList[0])
         val displayMetrics: DisplayMetrics = getResources().getDisplayMetrics()
         Glide.with(this).load(
-            imageList[0]
+            newList[0]
         ).override(displayMetrics.widthPixels, displayMetrics.heightPixels).into(imageView)
 
         imageView.setOnClickListener {
 
 
             val intent = Intent(this, RightOrWrongActivity::class.java).apply {
-                putExtra(EXTRA_WORDLIST, imageList.toIntArray())
+                putExtra(EXTRA_WORDLIST, newList.toIntArray())
                 putExtra(EXTRA_SOUNDLIST, soundList.toIntArray())
             }
             startActivity(intent)
         }
     }
+
 }
