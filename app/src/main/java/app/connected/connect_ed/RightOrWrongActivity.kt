@@ -52,6 +52,7 @@ class RightOrWrongActivity : AppCompatActivity() {
                 }
             }
             var verb = getResources().getResourceEntryName(imagesFirstFour[index])
+            verb = verb.removePrefix("image_")
             button.text = "to $verb"
         }
 
