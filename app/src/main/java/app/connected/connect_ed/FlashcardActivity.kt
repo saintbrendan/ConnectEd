@@ -13,21 +13,6 @@ const val EXTRA_WORDLIST = "com.example.mergeded.WORDLIST"
 const val EXTRA_SOUNDLIST = "com.example.mergeded.SOUNDLIST"
 
 class FlashcardActivity : AppCompatActivity() {
-    var imageList = mutableListOf<Int>(
-        R.drawable.image_baseball,
-        R.drawable.rest,
-        R.drawable.climb,
-        R.drawable.argue,
-        R.drawable.cry,
-        R.drawable.dance,
-        R.drawable.dive,
-        R.drawable.exercise,
-        R.drawable.windsurf,
-        R.drawable.walk,
-        R.drawable.write,
-        R.drawable.cook,
-    )
-
     var soundList = mutableListOf<Int>(
         R.raw.rest,
         R.raw.climb,
@@ -42,15 +27,13 @@ class FlashcardActivity : AppCompatActivity() {
         R.raw.cook,
     )
 
-
-
     private var mediaPlayer: MediaPlayer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flashcard)
 
-        fun getDrawablesList() : List<Int> {
+        fun getDrawablesList(): List<Int> {
             val drawableClass = R.drawable::class
             val instance = drawableClass.constructors.first().call()
             val drawablesList = mutableListOf<Int>()
@@ -59,15 +42,12 @@ class FlashcardActivity : AppCompatActivity() {
                 val word = resources.getResourceEntryName(test)
                 if (word.startsWith("image_", ignoreCase = false)) {
                     drawablesList.add(test)
-                    Log.d("Field Name", word)
                 }
             }
             return drawablesList
         }
+
         var newList = getDrawablesList()
-
-
-
 
         val imageView = findViewById<ImageView>(R.id.imageView)
         val imageArray = intent.getIntArrayExtra(EXTRA_WORDLIST)

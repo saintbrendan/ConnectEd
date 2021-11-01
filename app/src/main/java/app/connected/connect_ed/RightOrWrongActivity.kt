@@ -32,17 +32,23 @@ class RightOrWrongActivity : AppCompatActivity() {
         textView.text = "How do you say this in English?"
 
         buttons.forEachIndexed { index, button ->
+            var verb = getResources().getResourceEntryName(imagesFirstFour[index])
+            verb = verb.removePrefix("image_").replace("_", " ")
+            button.text = "to $verb"
             if (index == iCorrect) {
                 button.setOnClickListener {
                     textView.text = "Correct!"
-                    val intent = Intent(this, FlashcardActivity::class.java).apply {
-                        val first = imageList.removeFirst()
-                        val firstSound = soundList.removeFirst()
-                        /// TODO: add last or after 3 repetitions.
-                        imageList.add(first)
-                        soundList.add(firstSound)
-                        putExtra(EXTRA_WORDLIST, imageList.toIntArray())
-                        putExtra(EXTRA_SOUNDLIST, soundList.toIntArray())
+                    var intent = Intent(this, FlashcardCongratulations::class.java)
+                    if (button.text != "to dance") {
+                        intent = Intent(this, FlashcardActivity::class.java).apply {
+                            val first = imageList.removeFirst()
+                            val firstSound = soundList.removeFirst()
+                            /// TODO: add last or after 3 repetitions.
+                            imageList.add(first)
+                            soundList.add(firstSound)
+                            putExtra(EXTRA_WORDLIST, imageList.toIntArray())
+                            putExtra(EXTRA_SOUNDLIST, soundList.toIntArray())
+                        }
                     }
                     startActivity(intent)
                 }
@@ -51,9 +57,7 @@ class RightOrWrongActivity : AppCompatActivity() {
                     textView.text = "Nope.  Try again!"
                 }
             }
-            var verb = getResources().getResourceEntryName(imagesFirstFour[index])
-            verb = verb.removePrefix("image_")
-            button.text = "to $verb"
+
         }
 
         buttonHome.setOnClickListener {

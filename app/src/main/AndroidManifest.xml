@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ConnectEd">
         <activity
+            android:name=".FlashcardCongratulations"
+            android:exported="false" />
+        <activity
             android:name=".ListeningActivity"
             android:exported="true" />
         <activity
@@ -34,4 +37,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
