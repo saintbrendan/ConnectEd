@@ -39,7 +39,7 @@ class RightOrWrongActivity : AppCompatActivity() {
                 button.setOnClickListener {
                     textView.text = "Correct!"
                     var intent = Intent(this, FlashcardCongratulations::class.java)
-                    if (button.text != "to dance") {
+                    if (button.text != "to workout") {
                         intent = Intent(this, FlashcardActivity::class.java).apply {
                             val first = imageList.removeFirst()
                             val firstSound = soundList.removeFirst()

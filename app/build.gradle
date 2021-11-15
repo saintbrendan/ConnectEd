@@ -10,8 +10,8 @@ android {
         applicationId "app.connected.connect_ed"
         minSdk 21
         targetSdk 30
-        versionCode 6
-        versionName "6"
+        versionCode 9
+        versionName "9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

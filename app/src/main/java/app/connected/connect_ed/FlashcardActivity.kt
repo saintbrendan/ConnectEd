@@ -33,6 +33,8 @@ class FlashcardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flashcard)
 
+        val imageUserListens = findViewById<ImageView>(R.id.imageUserListens);
+
         fun getDrawablesList(): List<Int> {
             val drawableClass = R.drawable::class
             val instance = drawableClass.constructors.first().call()
@@ -70,9 +72,11 @@ class FlashcardActivity : AppCompatActivity() {
             newList[0]
         ).override(displayMetrics.widthPixels, displayMetrics.heightPixels).into(imageView)
 
+        imageUserListens.setOnClickListener {
+            mediaPlayer?.start()
+        }
+
         imageView.setOnClickListener {
-
-
             val intent = Intent(this, RightOrWrongActivity::class.java).apply {
                 putExtra(EXTRA_WORDLIST, newList.toIntArray())
                 putExtra(EXTRA_SOUNDLIST, soundList.toIntArray())
