@@ -12,24 +12,12 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import java.util.*
+import kotlin.collections.HashMap
 
 const val EXTRA_WORDLIST = "com.example.mergeded.WORDLIST"
 const val EXTRA_SOUNDLIST = "com.example.mergeded.SOUNDLIST"
 
 class FlashcardActivity : AppCompatActivity() {
-    var soundList = mutableListOf<Int>(
-        R.raw.rest,
-        R.raw.climb,
-        R.raw.argue,
-        R.raw.cry,
-        R.raw.dance,
-        R.raw.dive,
-        R.raw.exercise,
-        R.raw.windsurf,
-        R.raw.walk,
-        R.raw.write,
-        R.raw.cook,
-    )
     var verb:String = ""
 
     private var mediaPlayer: MediaPlayer? = null
@@ -56,7 +44,21 @@ class FlashcardActivity : AppCompatActivity() {
             return drawablesList
         }
 
+        fun getAudiblesMap(): MutableMap<String, Int> {
+            val audibleClass = R.raw::class
+            val instance = audibleClass.constructors.first().call()
+            val audiblesMap = HashMap<String, Int>()
+            for (field in instance.javaClass.declaredFields) {
+                val test = field.getInt(instance)
+                println("test:$test")
+                val word = resources.getResourceEntryName(test)
+                audiblesMap[word] = test
+            }
+            return audiblesMap
+        }
+
         var newList = getDrawablesList()
+        var soundMap = getAudiblesMap()
 
         val imageView = findViewById<ImageView>(R.id.imageView)
         val imageArray = intent.getIntArrayExtra(EXTRA_WORDLIST)
@@ -64,18 +66,20 @@ class FlashcardActivity : AppCompatActivity() {
         if (imageArray != null) {
             newList = imageArray.toMutableList()
         }
-        if (soundArray != null) {
-            soundList = soundArray.toMutableList()
+//        if (soundArray != null) {
+//            soundList = soundArray.toMutableList()
+//        }
+
+        verb = getResources().getResourceEntryName(newList[0]).removePrefix("image_")
+        val soundId = soundMap[verb]
+        verb = verb.replace("_", " ")
+
+        if (soundId != null) {
+            mediaPlayer = MediaPlayer.create(this, soundId)
+            mediaPlayer?.setOnPreparedListener {
+            }
+            mediaPlayer?.start()
         }
-
-        mediaPlayer = MediaPlayer.create(this, soundList[0])
-        mediaPlayer?.setOnPreparedListener {
-        }
-        mediaPlayer?.start()
-
-        verb = getResources().getResourceEntryName(newList[0])
-        verb = verb.removePrefix("image_").replace("_", " ")
-
 
         //imageView.setImageResource(imageList[0])
         val displayMetrics: DisplayMetrics = getResources().getDisplayMetrics()
@@ -120,14 +124,12 @@ class FlashcardActivity : AppCompatActivity() {
         imageView.setOnClickListener {
             val intent = Intent(this, RightOrWrongActivity::class.java).apply {
                 putExtra(EXTRA_WORDLIST, newList.toIntArray())
-                putExtra(EXTRA_SOUNDLIST, soundList.toIntArray())
             }
             startActivity(intent)
         }
         textRight.setOnClickListener {
             val intent = Intent(this, RightOrWrongActivity::class.java).apply {
                 putExtra(EXTRA_WORDLIST, newList.toIntArray())
-                putExtra(EXTRA_SOUNDLIST, soundList.toIntArray())
             }
             startActivity(intent)
         }

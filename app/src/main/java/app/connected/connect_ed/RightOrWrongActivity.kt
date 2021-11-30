@@ -42,12 +42,9 @@ class RightOrWrongActivity : AppCompatActivity() {
                     if (button.text != "to workout") {
                         intent = Intent(this, FlashcardActivity::class.java).apply {
                             val first = imageList.removeFirst()
-                            val firstSound = soundList.removeFirst()
                             /// TODO: add last or after 3 repetitions.
                             imageList.add(first)
-                            soundList.add(firstSound)
                             putExtra(EXTRA_WORDLIST, imageList.toIntArray())
-                            putExtra(EXTRA_SOUNDLIST, soundList.toIntArray())
                         }
                     }
                     startActivity(intent)

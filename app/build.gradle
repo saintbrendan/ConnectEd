@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk 28
 
     defaultConfig {
         applicationId "app.connected.connect_ed"
         minSdk 21
-        targetSdk 30
+        targetSdk 28
         versionCode 10
         versionName "10"
 
