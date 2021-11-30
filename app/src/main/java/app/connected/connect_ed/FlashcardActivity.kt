@@ -18,7 +18,7 @@ const val EXTRA_WORDLIST = "com.example.mergeded.WORDLIST"
 const val EXTRA_SOUNDLIST = "com.example.mergeded.SOUNDLIST"
 
 class FlashcardActivity : AppCompatActivity() {
-    var verb:String = ""
+    var verb: String = ""
 
     private var mediaPlayer: MediaPlayer? = null
 
@@ -155,10 +155,10 @@ class FlashcardActivity : AppCompatActivity() {
                     )
                 val spokenText = result?.get(0)?.lowercase()
                 var msg = ""
-                if (spokenText == verb.lowercase() || spokenText == "to "+verb.lowercase()) {
+                if (spokenText == verb.lowercase() || spokenText == "to " + verb.lowercase()) {
                     msg = "Congratulations!  Correct!  \nClick the right arrow to continue."
                 } else {
-                    msg = "you said " + spokenText + " and we were expecting " + verb
+                    msg = "You said \"" + spokenText + "\" and we were expecting \"" + verb + "\"."
                 }
                 textResult.text = msg
             }
