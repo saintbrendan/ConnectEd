@@ -22,6 +22,7 @@ class FlashcardActivity : AppCompatActivity() {
 
     private var mediaPlayer: MediaPlayer? = null
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flashcard)
