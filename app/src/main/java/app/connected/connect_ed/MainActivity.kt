@@ -175,20 +175,18 @@ class MainActivity : AppCompatActivity() {
         @Throws(IOException::class)
         private fun getCredentials(HTTP_TRANSPORT: NetHttpTransport): Credential {
             // Load client secrets.
-            val `in` =
+            val input =
                 DriveQuickstart::class.java.getResourceAsStream(CREDENTIALS_FILE_PATH)
                     ?: throw FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH)
             val clientSecrets: GoogleClientSecrets =
-                GoogleClientSecrets.load(JSON_FACTORY, InputStreamReader(`in`))
+                GoogleClientSecrets.load(JSON_FACTORY, InputStreamReader(input))
             Log.d(clientSecrets.toString(), "client secrets")
-
+            Log.d(JSON_FACTORY.toString(), "Json Factory")
+            Log.d(SCOPES.toString(), "Scopes")
+            clientSecrets.set("client_id", "10455009766-m9l04edej6m6ca7g0f4h8dnmi7c8pmq8")
             // Build flow and trigger user authorization request.
             val flow: GoogleAuthorizationCodeFlow = GoogleAuthorizationCodeFlow.Builder(
-                HTTP_TRANSPORT,
-                JSON_FACTORY,
-                clientSecrets,
-                SCOPES
-            )
+                HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
                 .setDataStoreFactory(FileDataStoreFactory(java.io.File(TOKENS_DIRECTORY_PATH)))
                 .setAccessType("offline")
                 .build()
@@ -208,23 +206,23 @@ class MainActivity : AppCompatActivity() {
                     .build()
 
             // Print the names and IDs for up to 10 files.
-            val result: FileList = service.files().list()
-                .setPageSize(10)
-                .setFields("nextPageToken, files(id, name)")
-                .execute()
-            val files: List<File> = result.getFiles()
-            if (files == null || files.isEmpty()) {
-                println("No files found.")
-            } else {
-                println("Files:")
-                for (file in files) {
-                    System.out.printf("%s (%s)\n", file.getName(), file.getId())
-                }
-            }
-            val fileId = "1iTHLk2umy4s6-1-ktKTmINi_VJGQiAx7"
-            val outputStream: OutputStream = ByteArrayOutputStream()
-            service.files().get(fileId)
-                .executeMediaAndDownloadTo(outputStream)
+//            val result: FileList = service.files().list()
+//                .setPageSize(10)
+//                .setFields("nextPageToken, files(id, name)")
+//                .execute()
+//            val files: List<File> = result.getFiles()
+//            if (files == null || files.isEmpty()) {
+//                println("No files found.")
+//            } else {
+//                println("Files:")
+//                for (file in files) {
+//                    System.out.printf("%s (%s)\n", file.getName(), file.getId())
+//                }
+//            }
+//            val fileId = "1iTHLk2umy4s6-1-ktKTmINi_VJGQiAx7"
+//            val outputStream: OutputStream = ByteArrayOutputStream()
+//            service.files().get(fileId)
+//                .executeMediaAndDownloadTo(outputStream)
         }
     }
 
